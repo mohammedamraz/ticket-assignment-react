@@ -1,0 +1,41 @@
+/* Snackbar.css */
+.snackbar {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+}
+
+.snackbar.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.snackbar.success {
+  background-color: #4caf50;
+}
+
+.snackbar.error {
+  background-color: #f44336;
+}
+
+.snackbar-message {
+  flex-grow: 1;
+}
+
+.snackbar-close {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #555;
+  border-radius: 5px;
+}

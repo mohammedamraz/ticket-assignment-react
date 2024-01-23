@@ -1,28 +1,31 @@
 /* TicketRise.css */
 .container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  margin: 20px;
 }
-
+ 
+.dashboard-section {
+  margin-bottom: 40px;
+}
+ 
 .form-container {
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .form-label {
   margin-bottom: 8px;
 }
-
+ 
 .form-input {
   width: 100%;
   padding: 8px;
   margin-bottom: 16px;
 }
-
+ 
 .form-button {
   background-color: #007bff;
   color: #fff;
@@ -31,29 +34,29 @@
   border-radius: 4px;
   cursor: pointer;
 }
-
+ 
 /* Add this to your CSS file or style block */
 .dashboard-container {
   margin: 20px;
 }
-
+ 
 .ticket-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
 }
-
+ 
 .ticket-table th,
 .ticket-table td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
-
+ 
 .ticket-table th {
   background-color: #f2f2f2;
 }
-
+ 
 /* SuccessMessage.css */
 .success-message {
   position: fixed;
@@ -66,5 +69,36 @@
   text-align: center;
   border-radius: 5px;
   transition: opacity 0.5s ease-in-out;
-
+ 
+}
+ 
+.sort-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+ 
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+ 
+.pagination button {
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+ 
+.pagination span {
+  margin-right: 10px;
+  font-weight: bold;
 }

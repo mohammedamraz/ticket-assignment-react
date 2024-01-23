@@ -112,7 +112,7 @@ const Dashboard = () => {
         fetchTicketAssignees();
     }, [tickets]);
 
-    // function for sorting 
+    // function for sorting
     const handleSort = () => {
         setSortOrder((prevSortOrder) => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
         setAgents((prevAgents) =>
@@ -143,124 +143,124 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <h2 style={{ textAlign: 'center' }}>List Of Tickets</h2>
-            <button onClick={handleTicketSort}>
-                Sort by Status {ticketSortOrder === 'asc' ? '▲' : '▼'}
-            </button>
-            <table className="ticket-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th></th>
-                        <th>Topic</th>
-                        <th>Description</th>
-                        <th>Severity</th>
-                        <th>Type</th>
-                        <th>Assigned To</th>
-                        <th>Resolved On</th>
-                        <th>Status</th>
-                        <th>Date Created</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayedTickets.map((ticket, index) => (
-                        <tr key={index}>
-                            <td>{ticket.ids}</td>
-                            <td>
-                                <input
-                                    type="checkbox"
-                                    checked={ticket.status === 'completed'}
-                                    onChange={() => handleToggleOption(ticket.id)}
-                                    disabled={ticket.status !== 'assigned'}
-                                />
-                            </td>
-                            <td>{ticket.topic}</td>
-                            <td>{ticket.description}</td>
-                            <td>{ticket.severity}</td>
-                            <td>{ticket.type}</td>
-                            <td>{ticketAssignees[ticket.id] || 'NA'}</td>
-                            <td>{ticket.resolvedOn ? formatDate(ticket.resolvedOn) : 'NA'}</td>
-                            <td>{ticket.status}</td>
-                            <td>{formatDate(ticket.dateCreated)}</td>
-
+            <section className="dashboard-section">
+                <h2>List Of Tickets</h2>
+                <button className="sort-button" onClick={handleTicketSort}>
+                    Sort by Status {ticketSortOrder === 'asc' ? '▲' : '▼'}
+                </button>
+                <table className="ticket-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Topic</th>
+                            <th>Description</th>
+                            <th>Severity</th>
+                            <th>Type</th>
+                            <th>Assigned To</th>
+                            <th>Resolved On</th>
+                            <th>Status</th>
+                            <th>Date Created</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="pagination" style={{ float: 'right' }}>
-                <button onClick={() => setCurrentTicketPage((prev) => Math.max(prev - 1, 1))}>
-                    Previous
+                    </thead>
+                    <tbody>
+                        {displayedTickets.map((ticket, index) => (
+                            <tr key={index}>
+                                <td>{ticket.ids}</td>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={ticket.status === 'completed'}
+                                        onChange={() => handleToggleOption(ticket.id)}
+                                        disabled={ticket.status !== 'assigned'}
+                                    />
+                                </td>
+                                <td>{ticket.topic}</td>
+                                <td>{ticket.description}</td>
+                                <td>{ticket.severity}</td>
+                                <td>{ticket.type}</td>
+                                <td>{ticketAssignees[ticket.id] || 'NA'}</td>
+                                <td>{ticket.resolvedOn ? formatDate(ticket.resolvedOn) : 'NA'}</td>
+                                <td>{ticket.status}</td>
+                                <td>{formatDate(ticket.dateCreated)}</td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className="pagination">
+                    <button onClick={() => setCurrentTicketPage((prev) => Math.max(prev - 1, 1))}>
+                        Previous
+                    </button>
+                    <span>{`Page ${currentTicketPage}`}</span>
+                    <button
+                        onClick={() =>
+                            setCurrentTicketPage((prev) =>
+                                Math.min(prev + 1, Math.ceil(tickets.length / PAGE_SIZE))
+                            )
+                        }
+                    >
+                        Next
+                    </button>
+                </div>
+            </section>
+            <section className="dashboard-section">
+                <h2>List Of Agents</h2>
+                <button className="sort-button" onClick={handleSort}>
+                    Sort by Active {sortOrder === 'asc' ? '▲' : '▼'}
                 </button>
-                <span>{`Page ${currentTicketPage}`}</span>
-                <button
-                    onClick={() =>
-                        setCurrentTicketPage((prev) =>
-                            Math.min(prev + 1, Math.ceil(tickets.length / PAGE_SIZE))
-                        )
-                    }
-                >
-                    Next
-                </button>
-            </div>
-            <h2 style={{ textAlign: 'center', marginTop: '5rem' }}>List Of Agents</h2>
-
-            <button onClick={handleSort}>
-                Sort by Active {sortOrder === 'asc' ? '▲' : '▼'}
-            </button>
-            <table className="ticket-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Date created</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    {displayedAgents.map((agents, index) => (
-                        <tr key={index}>
-                            <td>{agents.ids}</td>
-                            <td>
-                                <input
-                                    type="checkbox"
-                                    checked={agents.active === true}
-                                    onChange={() => handleAgentKanbanOption(agents.id)}
-                                />
-                            </td>
-                            <td>{agents.name}</td>
-                            <td>{agents.email}</td>
-                            <td>{agents.phone}</td>
-                            <td>{agents.description}</td>
-                            <td>{agents.active ? 'Active' : 'Inactive'}</td>
-                            <td>{formatDate(agents.dateCreated)}</td>
-
-
+                <table className="ticket-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Date created</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div className="pagination" style={{ float: 'right' }}>
-                <button onClick={() => setCurrentAgentPage((prev) => Math.max(prev - 1, 1))}>
-                    Previous
-                </button>
-                <span>{`Page ${currentAgentPage}`}</span>
-                <button
-                    onClick={() =>
-                        setCurrentAgentPage((prev) =>
-                            Math.min(prev + 1, Math.ceil(agents.length / PAGE_SIZE))
-                        )
-                    }
-                >
-                    Next
-                </button>
-            </div>
+                    </thead>
+                    <tbody>
+                        {displayedAgents.map((agents, index) => (
+                            <tr key={index}>
+                                <td>{agents.ids}</td>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        checked={agents.active === true}
+                                        onChange={() => handleAgentKanbanOption(agents.id)}
+                                    />
+                                </td>
+                                <td>{agents.name}</td>
+                                <td>{agents.email}</td>
+                                <td>{agents.phone}</td>
+                                <td>{agents.description}</td>
+                                <td>{agents.active ? 'Active' : 'Inactive'}</td>
+                                <td>{formatDate(agents.dateCreated)}</td>
+
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className="pagination">
+                    <button onClick={() => setCurrentAgentPage((prev) => Math.max(prev - 1, 1))}>
+                        Previous
+                    </button>
+                    <span>{`Page ${currentAgentPage}`}</span>
+                    <button
+                        onClick={() =>
+                            setCurrentAgentPage((prev) =>
+                                Math.min(prev + 1, Math.ceil(agents.length / PAGE_SIZE))
+                            )
+                        }
+                    >
+                        Next
+                    </button>
+                </div>
+            </section>
         </div>
 
     );
